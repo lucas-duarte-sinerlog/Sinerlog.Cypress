@@ -1,0 +1,23 @@
+{
+  "name": "sinerlog.hub.cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^11.4.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.3",
+    "cypress": "^10.3.0",
+    "esbuild": "^0.14.48",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "guid": "^0.0.12",
+    "tsc": "^2.0.4",
+    "uuid": "^8.3.2"
+  }
+}

@@ -1,9 +1,8 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { Request } from "../Request";
 import { TenantToken } from "../Tenant/TenantToken.enum";
-
-const request = new Request();
-
+import { v4 as uuidv4 } from 'uuid';
+import { PackageWebClient } from "./PackageWebClient";
+import { Request } from "../../../../src/utils/Request";
 Given(/^I want to create a package$/, () => { });
 
 Then(/^the following tenant exists$/, () => {
@@ -15,20 +14,23 @@ Then(/^the following tenant exists$/, () => {
         },
         failOnStatusCode: false
     }).then((response) => {
-        request.status = response.status
+        Request.status = response.status
     });
 });
 
 
 When(/^i set a default payload$/, () => {
-	return true;
+    cy.fixture('SinerlogSafetyTracker/Package/add-package').then(jsonBody => {
+        jsonBody.orderNumber = uuidv4()
+        Request.jsonBody = jsonBody
+    })
 });
 
 
 When(/^send a create request$/, () => {
-    return true;
+    PackageWebClient.Add(Request)
 });
 
 Then(/^the package should be created$/, () => {
-    return true;
-});
+    expect(Request.status).to.be.equals(201)
+})

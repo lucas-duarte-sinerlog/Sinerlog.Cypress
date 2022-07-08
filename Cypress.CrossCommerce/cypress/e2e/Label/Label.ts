@@ -1,5 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { v4 as uuidv4 } from 'uuid';
+import { Logger } from "../../utils/Logger";
 let requestStatus;
 let jsonBody;
 
@@ -37,7 +38,7 @@ Then(/^the label should be created$/, () => {
 });
 
 
-When(/^the following Shipping Company exists:$/, () => {
+When(/^the following Shipping Company exists$/, () => {
 	cy.request({
 		method: 'GET',
 		url: 'http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/3		',
@@ -50,16 +51,18 @@ When(/^the following service exists in Shipping Company above$/, () => {
 	cy.request({
 		method: 'GET',
 		url: 'http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/3',
-	}).should(response => {
+	}).then(response => {
+		Logger.LogResponseBody(response)
+	}).then(response => {
 		try {
 			expect(response.status).to.be.equals(200)
-			expect(response.body.services[1].name).to.be.equals('Sedex10')
+			expect(response.body.services[1].name).to.be.equals('Sedex 10')
 			expect(response.body.services[1].sinerlogServiceType).to.be.equals('Priority')
 			expect(response.body.services[1].serviceExternalCode.id).to.be.equals("124877")
 			expect(response.body.services[1].serviceExternalCode.code).to.be.equals('04014')
 		} catch (error) {
 			throw new Error("**Shipping company service not exists for test**");
-			
+
 		}
 	});
 });

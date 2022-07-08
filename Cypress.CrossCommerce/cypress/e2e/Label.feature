@@ -7,8 +7,8 @@ Feature: Shipping Labels
             | Id | Name     |
             | 3  | Correios |
         And the following service exists in Shipping Company above
-            | Id | Name     | SinerlogServiceType | ServiceExternalCodeId | ServiceExternalCode |
-            | 4  | Sedex 10 | Priority            | 162016                | 03158               |
+            | Id | Name    | SinerlogServiceType | ServiceExternalObject          |
+            | 3  | Sedex10 | Priority            | {"Id":"162016","Code":"03158"} |
         When i set "<DeliveryType>" delivery type
         And a "<City>" zip code "<ZipCode>"
         And send a create request
@@ -17,3 +17,5 @@ Feature: Shipping Labels
         Examples:
             | DeliveryType | City   | ZipCode  |
             | Priority     | Manaus | 27949316 |
+            | Priority     | Manaus | 27949336 |
+            | Priority     | Manaus | 27949342 |

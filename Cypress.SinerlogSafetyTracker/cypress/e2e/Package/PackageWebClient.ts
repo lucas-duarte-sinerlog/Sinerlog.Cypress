@@ -1,7 +1,6 @@
 import { Logger } from "../../utils/Logger"
 import { CypressRequest, Request } from "../../../../src/utils/Request"
 import { TenantToken } from "../Tenant/TenantToken.enum"
-import { WebClientBase } from "../../../../src/WebClientBase"
 
 export class PackageWebClient {
 

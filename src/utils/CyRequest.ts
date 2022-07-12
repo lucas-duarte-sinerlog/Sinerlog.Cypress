@@ -1,14 +1,16 @@
 export class CyRequest {
 
-    jsonBody: any
+    requestBody: any
     status: number
+    responseBody: any
 
     BuildResponse(response){
         this.status = response.status
+        this.responseBody = response.body
     }
 
-    BuildFixture(fixture){
-        this.jsonBody = fixture
+    BuildRequest(fixture){
+        this.requestBody = fixture
     }
 
 }

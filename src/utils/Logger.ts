@@ -7,6 +7,6 @@ export class Logger {
     }
     static LogRequestBody(request: CyRequest) {
         if (Cypress.env('debug'))
-            cy.log(`**Request body:** ${JSON.stringify(request.jsonBody)}`)
+            cy.log(`**Request body:** ${JSON.stringify(request.requestBody)}`)
     }
 }

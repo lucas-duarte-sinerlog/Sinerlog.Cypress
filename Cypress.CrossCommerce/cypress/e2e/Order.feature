@@ -10,7 +10,7 @@ Feature: Order
         Then the order should be created
 
     Scenario: #2 - Cancel an order
-        Given   I want to cancel an order
+        Given I want to cancel an order
         And the following account exists
             | Id | Name     |
             | 1  | Sinerlog |

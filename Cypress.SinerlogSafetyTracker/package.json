@@ -20,5 +20,8 @@
     "guid": "^0.0.12",
     "tsc": "^2.0.4",
     "uuid": "^8.3.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }

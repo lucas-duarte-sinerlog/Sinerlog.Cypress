@@ -1,4 +1,5 @@
 export class WebClientModelBase {
+    id: number
     payload: any
     response: any
     status: number
@@ -9,7 +10,7 @@ export class WebClientModelBase {
         this.response = response.body
     }
 
-    BuildRequest(fixture){
+    BuildPayload(fixture){
         this.payload = fixture
     }
 }

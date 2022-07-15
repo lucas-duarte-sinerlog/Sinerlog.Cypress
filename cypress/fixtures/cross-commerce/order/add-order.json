@@ -1,0 +1,70 @@
+{
+    "code": "AM160515947BR",
+    "shippingMethod": "Express",
+    "currency": "BRL",
+    "comments": "Special Price",
+    "placedAt": "2022-03-30T00:00:00",
+    "estimatedDueDate": "2022-03-30T00:00:00",
+    "totalItems": 105,
+    "totalTax": 30,
+    "totalShipping": 10,
+    "totalDiscount": 30,
+    "totalAmount": 115,
+    "saleChannelId": 1,
+    "items": [
+      {
+        "shippingInsurance": true,
+        "gift": false,
+        "code": "84393249",
+        "unitPrice": 21,
+        "quantity": 5
+      }
+    ],
+    "payments": [
+      {
+        "method": "CreditCard",
+        "cardBrand": "Visa",
+        "total": 50.6,
+        "transactionId": "81818"
+      }
+    ],
+    "customer": {
+      "name": "Jose da Silva",
+      "document": "45570179836",
+      "email": "joao@dasilva.com.br",
+      "phone": "11985096995",
+      "address": {
+        "street": "Rua Ipanema ",
+        "street2": "",
+        "number": "123",
+        "complement": "Apt 108",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "neighborhood": "Barra da Tijuca",
+        "zipcode": "22631390",
+        "countryCode": "BR"
+      }
+    },
+    "shippingAddress": {
+      "street": "Rua Ipanema ",
+      "street2": "",
+      "number": "123",
+      "complement": "Apt 108",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "neighborhood": "Barra da Tijuca",
+      "zipcode": "22631390",
+      "countryCode": "BR"
+    },
+    "billingAddress": {
+      "street": "Rua Ipanema ",
+      "street2": "",
+      "number": "123",
+      "complement": "Apt 108",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "neighborhood": "Barra da Tijuca",
+      "zipcode": "22631390",
+      "countryCode": "BR"
+    }
+  }

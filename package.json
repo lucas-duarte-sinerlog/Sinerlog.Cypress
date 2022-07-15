@@ -1,0 +1,27 @@
+{
+  "name": "sinerlog.hub.cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open-debug": "npx cypress open --env debug=true",
+    "open": "npx cypress open --env debug=false"
+ },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^11.4.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.3",
+    "cypress": "^10.3.0",
+    "esbuild": "^0.14.48",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "guid": "^0.0.12",
+    "tsc": "^2.0.4",
+    "uuid": "^8.3.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+}

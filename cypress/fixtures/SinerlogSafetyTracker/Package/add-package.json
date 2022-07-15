@@ -1,0 +1,53 @@
+{
+    "description": "Eletronics",
+    "orderNumber": "SST0001",
+    "externalId": "ExternalTrackingNumber",
+    "weight": 430,
+    "height": 20,
+    "width": 20,
+    "length": 20,
+    "classification": "regular",
+    "totalAmount": "50.00",
+    "currency": "USD",
+    "deliveryType": "ST",
+    "deliveryTax": 2,
+    "seller": {
+      "name": "AliExpress CO.LTD",
+      "document": "368.337.520-52",
+      "email": "info@aliexpress.com.cn",
+      "phone": "+86-15712472581",
+      "address": {
+        "street": "Rua Francisco de Paula",
+        "number": "10",
+        "complement": "10",
+        "city": "Rm102",
+        "province": "RJ",
+        "zipcode": "22775120"
+      }
+    },
+    "customer": {
+      "name": "John Doe",
+      "document": "516.846.114-07",
+      "email": "john.doe@example.com",
+      "phone": "(99) 99999-9999"
+    },
+    "shippingAddress": {
+      "street": "Rua Francisco de Paula",
+      "street2": "Rio de Janeiro",
+      "number": "1546",
+      "complement": "apto 101",
+      "city": "Rio de Janeiro",
+      "province": "RJ",
+      "zipcode": "22775120"
+    },
+    "products": [
+      {
+        "code": 40129,
+        "sh_code": 851690,
+        "name": "Mini microphone",
+        "value": "21.00",
+        "qty": "1",
+        "photoBase64": "/9j/4Q1TRXhpZgAATU0AKgAAAAgADAEAAAMAAAABA9..."
+      }
+    ]
+  }

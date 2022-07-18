@@ -10,13 +10,7 @@ const order = new Order()
 // Scenario #1
 
 Given(/^the following account exists$/, () => {
-    cy.request({
-        method: 'GET',
-        url: 'http://dev.doc.sinerlog.log.br/onboarding/api/Account/1',
-    }).then(response => {
-        request.BuildResponse(response)
-        expect(response.status).to.be.equals(200)
-    });
+    
 });
 
 When(/^I want to create a order$/, () => {});

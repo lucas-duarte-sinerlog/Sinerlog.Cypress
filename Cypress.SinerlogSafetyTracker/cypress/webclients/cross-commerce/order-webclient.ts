@@ -26,6 +26,7 @@ export class OrderWebClient {
 
     static Add(order: Order) {
         order.payload.code = uuidv4()
+        Logger.LogRequestBody(order.payload)
         return cy.request({
             method: 'POST',
             url: '/Orders',

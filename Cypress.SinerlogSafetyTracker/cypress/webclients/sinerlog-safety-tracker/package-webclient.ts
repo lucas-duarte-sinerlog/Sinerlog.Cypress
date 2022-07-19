@@ -1,6 +1,6 @@
 import { Logger } from "../../utils/Logger"
 import { CyRequest } from "../../../../src/utils/CyRequest"
-import { TenantToken } from "../../e2e/Tenant/TenantToken.enum"
+import { TenantToken } from "../../e2e/tenant/TenantToken.enum"
 import { v4 as uuidv4 } from 'uuid';
 import { Package } from "../../models/sinerlog-safety-tracker/package-model";
 

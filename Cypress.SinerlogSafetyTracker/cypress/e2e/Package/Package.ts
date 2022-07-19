@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { TenantToken } from "../Tenant/TenantToken.enum";
+import { TenantToken } from "../tenant/TenantToken.enum";
 import { PackageWebClient } from "../../webclients/sinerlog-safety-tracker/package-webclient";
 import { Package } from "../../models/sinerlog-safety-tracker/package-model";
 import { WebClientModelBase } from "../../models/web-client-model-base";

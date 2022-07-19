@@ -6,7 +6,7 @@ Feature: CrossCommerce - Order
         When i set a "add-order.json" default payload
         And send a create request
         Then the order should be created
-
+@focus 
     Scenario: Cancel an order
         Given I want to cancel an order
         And the account "Sinerlog" with id "1" exists
@@ -15,6 +15,8 @@ Feature: CrossCommerce - Order
         Then the order should be created
         When send a cancel request
         Then the order must be canceled
+        When i get the order
+        Then the order status must be "Canceled"
 
     Scenario: Order export to SST (imcomplete)
         Given i want to export an order to SST from CrossCommerce
@@ -26,7 +28,6 @@ Feature: CrossCommerce - Order
         When i wait for an order export time
         And consult an order at SST
         Then the order must have been exported
-    @focus
     Scenario Outline: Order Split by value
         Given I want to split an order by item and value
         And the account "Sinerlog" with id "1" exists
@@ -39,5 +40,5 @@ Feature: CrossCommerce - Order
 
         Examples:
             | totalItems | currency | totalAmount | totalShipping | firstProductCode | firstProductQuantity | firstProductUnitPrice | secondProductCode | secondProductQuantity | secondProductUnitPrice | totalTax | shippingInsurance |
-            | 4000       | U$       | 4000        | 955           | PENDING          | 1                    | 3000                  | PENDING           | 1                     | 1000                   | 45       | false             |
+            | 4000       | USD      | 4000        | 955           | PENDING          | 1                    | 3000                  | PENDING           | 1                     | 1000                   | 45       | false             |
 

@@ -16,6 +16,8 @@ Then(/^the order should be created$/, () => {
     expect(order.status).to.be.equals(201)
 });
 
+// Cancel an order
+
 Given(/^I want to cancel an order$/, () => { });
 
 Then(/^the account "([^"]*)" with id "([^"]*)" exists$/, (name, id: number) => {
@@ -32,12 +34,22 @@ When(/^i set a "([^"]*)" default payload$/, (jsonName) => {
 });
 
 When(/^send a cancel request$/, () => {
-
+    OrderWebClient.Cancel(order)
 });
 
 Then(/^the order must be canceled$/, () => {
-    return true;
+    //expect(order.status).to.be.equals(200)
 });
+
+
+When(/^i get the order$/, () => {
+	OrderWebClient.Get(order)
+});
+
+Then(/^the order status must be "([^"]*)"$/, (status) => {
+	expect(order.response.status).to.be.equals(status)
+});
+
 
 
 // Order Export
@@ -80,22 +92,22 @@ When(/^i set a totalItems field "([^"]*)", currency "([^"]*)", totalAmount "([^"
     order.payload.totalShipping = totalShipping
 });
 
-When(/^i set a first product code "([^"]*)" with quantity "([^"]*)", unit price "([^"]*)", shippingInsurance field "([^"]*)"$/, (productCode,quantity,unitPrice,shippingInsurance: boolean) => {
+When(/^i set a first product code "([^"]*)" with quantity "([^"]*)", unit price "([^"]*)", shippingInsurance field "([^"]*)"$/, (productCode,quantity,unitPrice,shippingInsurance: string) => {
 	console.log(productCode,quantity,unitPrice,shippingInsurance);
     order.payload.items[0].code = productCode
 	order.payload.items[0].quantity = quantity
 	order.payload.items[0].unitPrice = unitPrice
-	order.payload.items[0].shippingInsurance = Boolean(shippingInsurance)
+	order.payload.items[0].shippingInsurance = (/true/i).test(shippingInsurance)
 	return true;
 });
 
 
-When(/^i set a second product code "([^"]*)" with quantity "([^"]*)", unit price "([^"]*)", shippingInsurance field "([^"]*)"$/, (productCode,quantity,unitPrice,shippingInsurance: boolean) => {
+When(/^i set a second product code "([^"]*)" with quantity "([^"]*)", unit price "([^"]*)", shippingInsurance field "([^"]*)"$/, (productCode,quantity,unitPrice,shippingInsurance: string) => {
 	console.log(productCode,quantity,unitPrice,shippingInsurance);
     order.payload.items[1].code = productCode
 	order.payload.items[1].quantity = quantity
 	order.payload.items[1].unitPrice = unitPrice
-	order.payload.items[1].shippingInsurance = Boolean(shippingInsurance)
+	order.payload.items[1].shippingInsurance = (/true/i).test(shippingInsurance)
 	return true;
 });
 

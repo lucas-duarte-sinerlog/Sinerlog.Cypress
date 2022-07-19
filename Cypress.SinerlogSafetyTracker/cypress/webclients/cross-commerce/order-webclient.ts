@@ -10,7 +10,9 @@ export class OrderWebClient {
             method: 'GET',
             url: `/Orders/${order.id}`,
             headers: { 'ApiKey': ApiKey.Sinerlog, }
-        }).then(response => { Logger.LogResponseBody(response) })
+        }).then(response => { Logger.LogResponseBody(response) }).then((response) => {
+          order.BuildResponse(response)
+        })
     }
 
     static Cancel(order: Order) {

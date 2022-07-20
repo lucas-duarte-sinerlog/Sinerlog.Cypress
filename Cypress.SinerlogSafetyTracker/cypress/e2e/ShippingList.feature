@@ -17,7 +17,7 @@ Feature: Shipping List
         When i get the shipping list
         Then the status must be "Suspended"
 
-    Scenario: #2 - Delivery cancel with a closed Shipping List
+    Scenario: #2 - Delivery Cancel with a closed Shipping List
         Given i want to suspend a delivery
         And the shipping seller with id "5" exists
         When i set a "add-label.json" label default payload

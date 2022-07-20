@@ -6,6 +6,7 @@ Feature: CrossCommerce - Order
         When i set a "add-order.json" default payload
         And send a create request
         Then the order should be created
+@focus          
     Scenario: Cancel an order
         Given I want to cancel an order
         And the account "Sinerlog" with id "1" exists

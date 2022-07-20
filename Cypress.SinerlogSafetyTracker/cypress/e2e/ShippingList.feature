@@ -14,6 +14,8 @@ Feature: Shipping List
         Then the shipping list must be created
         When i send a delivery cancel request with a newly included label
         Then the delivery must be suspend
+        When i get the shipping list
+        Then the status must be "Suspended"
 
     Scenario: Delivery cancel with a closed Shipping List
         Given i want to suspend a delivery
@@ -22,10 +24,10 @@ Feature: Shipping List
         And send a create label request
         Then the label should be created
         When i set a "add-shippingList.json" shipping list default payload
-        And add a newly created label
+        And include a newly created label
         And send a shipping list create request
         Then the shipping list must be created
         When i send a shipping list close request
         Then the shipping list must be closed
-        When i send a delivery cancel request
+        When i send a delivery cancel request with a newly included label
         Then the delivery must be suspend

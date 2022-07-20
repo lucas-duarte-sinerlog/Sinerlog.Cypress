@@ -59,12 +59,24 @@ Then(/^the shipping list must be created$/, () => {
 })
 
 When(/^i send a delivery cancel request with a newly included label$/, () => {
-    return true
+    label.payload = null
+    LabelWebClient.DeliveryCancel(label)
 })
 
 Then(/^the delivery must be suspend$/, () => {
-    return true
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessOK)
 })
+
+
+When(/^i get the shipping list$/, () => {
+	return true;
+});
+
+Then(/^the status must be "([^"]*)"$/, (suspendedStatus) => {
+	console.log(suspendedStatus);
+	return true;
+});
+
 
 // Senario #2
 

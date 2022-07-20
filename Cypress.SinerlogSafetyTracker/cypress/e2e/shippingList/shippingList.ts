@@ -82,9 +82,9 @@ Then(/^the status must be "([^"]*)"$/, (suspendedStatus) => {
 
 
 When(/^i send a shipping list close request$/, () => {
-	return true;
+	ShippingListWebClient.Close(shippingList)
 });
 
 Then(/^the shipping list must be closed$/, () => {
-	return true;
+    HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
 });

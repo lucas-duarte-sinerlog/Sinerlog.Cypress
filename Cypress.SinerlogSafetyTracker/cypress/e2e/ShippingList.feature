@@ -9,10 +9,10 @@ Feature: Shipping List
         And send a create label request
         Then the label should be created
         When i set a "add-shippingList.json" shipping list default payload
-        And add a newly created label
+        And include a newly created label
         And send a shipping list create request
         Then the shipping list must be created
-        When i send a delivery cancel request
+        When i send a delivery cancel request with a newly included label
         Then the delivery must be suspend
 
     Scenario: Delivery cancel with a closed Shipping List

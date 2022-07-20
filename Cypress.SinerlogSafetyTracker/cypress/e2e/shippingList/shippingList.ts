@@ -1,11 +1,12 @@
 import StatusCode from "status-code-enum"
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
-import { HttpAsertion } from "../../assertions/http-assertions"
+import { HttpAssertion } from "../../assertions/http-assertions"
 import { Label } from "../../models/cross-commerce/label-model"
 import { ShippingList } from "../../models/cross-commerce/shippingList-model"
 import { ShippingSeller } from "../../models/cross-commerce/shippingSeller-model"
 import { LabelWebClient } from "../../webclients/cross-commerce/label-webclient"
 import { ShippingSellerWebClient } from "../../webclients/cross-commerce/shippingSeller-webclient"
+import { ShippingListWebClient } from "../../webclients/cross-commerce/shippingList-webclient"
 
 const shippingSeller = new ShippingSeller()
 const label = new Label()
@@ -36,7 +37,7 @@ When(/^send a create label request$/, () => {
 })
 
 Then(/^the label should be created$/, () => {
-    HttpAsertion.CheckStatusCode(label.response, StatusCode.SuccessCreated)
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessCreated)
 })
 
 When(/^i set a "([^"]*)" shipping list default payload$/, (jsonName) => {
@@ -45,22 +46,33 @@ When(/^i set a "([^"]*)" shipping list default payload$/, (jsonName) => {
     })
 })
 
-When(/^add a newly created label$/, () => {
+When(/^include a newly created label$/, () => {
     shippingList.payload.labelsToInsert.push(label.trackingCode)
 })
 
 When(/^send a shipping list create request$/, () => {
-    
+    ShippingListWebClient.Add(shippingList)
 })
 
 Then(/^the shipping list must be created$/, () => {
-    return true
+    HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessCreated)
 })
 
-When(/^i send a delivery cancel request$/, () => {
+When(/^i send a delivery cancel request with a newly included label$/, () => {
     return true
 })
 
 Then(/^the delivery must be suspend$/, () => {
     return true
 })
+
+// Senario #2
+
+
+When(/^i send a shipping list close request$/, () => {
+	return true;
+});
+
+Then(/^the shipping list must be closed$/, () => {
+	return true;
+});

@@ -1,13 +1,15 @@
 export class WebClientModelBase {
     id: number
     payload: any
-    response: any
+    responsePayload: any
     status: number
     statusText: string
+    response: Cypress.Response<any>
 
-    BuildResponse(response){
+    BuildResponse(response: Cypress.Response<any>){
         this.status = response.status
-        this.response = response.body
+        this.responsePayload = response.body
+        this.response = response
     }
 
     BuildPayload(fixture){

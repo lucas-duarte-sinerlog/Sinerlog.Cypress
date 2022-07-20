@@ -4,10 +4,11 @@ Feature: Shipping List
 
     Scenario: #1 - Delivery Cancel with a open Shipping List
         Given i want to suspend a delivery
+        And the shipping seller with id "5" exists
         When i set a "add-label.json" label default payload
         And send a create label request
         Then the label should be created
-        When i set a "add-shippingList.json" default payload
+        When i set a "add-shippingList.json" shipping list default payload
         And add a newly created label
         And send a shipping list create request
         Then the shipping list must be created

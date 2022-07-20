@@ -88,3 +88,10 @@ When(/^i send a shipping list close request$/, () => {
 Then(/^the shipping list must be closed$/, () => {
     HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
 });
+
+// Scenario #3
+
+
+When(/^send a create shipping express request$/, () => {
+	LabelWebClient.Express(label)
+});

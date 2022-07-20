@@ -32,4 +32,18 @@ export class LabelWebClient {
             label.BuildResponse(response)
         });
     }
+
+    static Express(label: Label) {
+        label.payload.data.invoiceKey = uuidv4()
+        label.payload.data.invoiceNumber = uuidv4()
+        Logger.LogRequestBody(label.payload)
+        return cy.request({
+            method: 'POST',
+            url: '/Shipping/express/pdf',
+            headers: { 'ApiKey': ApiKey.Sinerlog, },
+            body: label.payload,
+            failOnStatusCode: false
+        }).then(response => { Logger.LogResponseBody(response) })
+
+    }
 }

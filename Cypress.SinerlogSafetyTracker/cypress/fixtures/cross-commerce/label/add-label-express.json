@@ -1,0 +1,28 @@
+{
+    "data": {
+      "shippingSellerId": 5,
+      "recipient": {
+        "name": "Sinerlog",
+        "address": "Rua Ipanema",
+        "number": "510",
+        "neighboord": "Barra da Tijuca",
+        "zipCode": "22631390",
+        "city": "Rio de Janeiro",
+        "state": "SP",
+        "phone": "21987502777",
+        "email": "sinerlog@teste.com.br",
+        "document": "55639176067"
+      },
+      "amount": 0,
+      "width": 10,
+      "height": 10,
+      "length": 10,
+      "diameter": 10,
+      "weight": 10,
+      "deliveryType": "Standard",
+      "invoiceNumber": "KJHB30dd2117801",
+      "invoiceKey": "510807012123440001275500100000009813641dd17781",
+      "itemDescription": "Gaming Chair",
+      "insurance": true
+    }
+  }

@@ -2,8 +2,10 @@ import { ShippingList } from "../../models/cross-commerce/shippingList-model";
 import { v4 as uuidv4 } from 'uuid';
 import { Logger } from "../../../../src/utils/Logger";
 import { ApiKey } from "../../enums/onboarding/account/apiKey";
+import { Label } from "../../models/cross-commerce/label-model";
 
 export class ShippingListWebClient {
+    
 
     static Add(shippingList: ShippingList) {
         shippingList.payload.code = uuidv4()

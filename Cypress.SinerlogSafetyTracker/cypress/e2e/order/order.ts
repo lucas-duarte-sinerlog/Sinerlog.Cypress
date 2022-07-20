@@ -1,7 +1,9 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { HttpAsertion } from "../../assertions/http-assertions";
 import { Order } from "../../models/cross-commerce/order-model";
 import { OrderWebClient } from "../../webclients/cross-commerce/order-webclient";
 import { AccountWebClient } from "../../webclients/onboarding/account-webclient";
+import { StatusCode } from 'status-code-enum'
 
 const order = new Order()
 
@@ -13,7 +15,7 @@ When(/^send a create request$/, () => {
 });
 
 Then(/^the order should be created$/, () => {
-    expect(order.status).to.be.equals(201)
+    expect(order.status).to.be.equals(StatusCode.SuccessCreated)
 });
 
 // Cancel an order
@@ -22,8 +24,8 @@ Given(/^I want to cancel an order$/, () => { });
 
 Then(/^the account "([^"]*)" with id "([^"]*)" exists$/, (name, id: number) => {
     AccountWebClient.Get(id).should((response) => {
-        expect(response.status).to.be.eq(200)
-        expect(response.body.name).to.be.eq(name)
+        HttpAsertion.CheckStatusCode(response, StatusCode.SuccessOK)
+        expect(response.body.name, "**Account Name**").to.be.eq(name)
     })
 });
 
@@ -38,7 +40,7 @@ When(/^send a cancel request$/, () => {
 });
 
 Then(/^the order must be canceled$/, () => {
-    //expect(order.status).to.be.equals(200)
+    expect(order.status).to.be.equals(200)
 });
 
 
@@ -47,7 +49,7 @@ When(/^i get the order$/, () => {
 });
 
 Then(/^the order status must be "([^"]*)"$/, (status) => {
-	expect(order.response.status).to.be.equals(status)
+	expect(order.response.status, "Order status").to.be.equals(status)
 });
 
 

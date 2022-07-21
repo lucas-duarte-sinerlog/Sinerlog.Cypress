@@ -1,8 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { Logger } from "../../../../src/utils/Logger";
 import { Label } from '../../models/cross-commerce/label-model';
 import { LabelWebClient } from '../../webclients/cross-commerce/label-webclient';
+import { HttpAssertion } from '../../assertions/http-assertions';
+import StatusCode from 'status-code-enum';
 
 const label = new Label()
 
@@ -23,22 +24,24 @@ When(/^a "([^"]*)" zip code "([^"]*)"$/, (city, zipCode) => {
     label.payload.recipient.zipCode = zipCode
 });
 
-When(/^send a create request$/, () => {
+When(/^send a label create request$/, () => {
     LabelWebClient.Add(label)
 });
 
 Then(/^the label should be created$/, () => {
-    expect(label.status).to.be.equal(201)
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessCreated)
 });
 
+When(/^the following Shipping Company exists$/, () => { });
 
-When(/^the following Shipping Company exists$/, () => {
+When(/^the Shipping Company with id "([^"]*)" and name "([^"]*)" exists$/, (id, name) => {
     cy.request({
         method: 'GET',
-        url: 'http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/3',
+        url: `http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/${id}`,
     }).should(response => {
         expect(response.status).to.be.equals(200)
-    });
+    }); 
+
 });
 
 When(/^the following service exists in Shipping Company above$/, () => {
@@ -56,3 +59,10 @@ When(/^the following service exists in Shipping Company above$/, () => {
 
     });
 });
+
+// Label Express
+
+When(/^send a label express create request$/, () => {
+	LabelWebClient.Express(label)
+});
+

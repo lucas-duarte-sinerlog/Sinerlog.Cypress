@@ -13,7 +13,7 @@ Feature: Shipping List
         And send a shipping list create request
         Then the shipping list must be created
         When i send a delivery cancel request with a newly included label
-        Then the delivery must be suspend
+        Then the delivery must not be suspend
         When i get the shipping list
         Then the status must be "Suspended"
 

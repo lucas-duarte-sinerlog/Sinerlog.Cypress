@@ -43,7 +43,7 @@ export class LabelWebClient {
             headers: { 'ApiKey': ApiKey.Sinerlog, },
             body: label.payload,
             failOnStatusCode: false
-        }).then(response => { Logger.LogResponseBody(response) })
+        }).then(response => { label.BuildResponse(response) })
 
     }
 }

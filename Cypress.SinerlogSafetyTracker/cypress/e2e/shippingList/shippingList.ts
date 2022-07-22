@@ -89,9 +89,34 @@ Then(/^the shipping list must be closed$/, () => {
     HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
 });
 
+
+Then(/^the delivery must not be suspend$/, () => {
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.ClientErrorBadRequest)
+});
+
+
+Then(/^the delivery must be suspended$/, () => {
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessOK)
+
+});
+
+
+
 // Scenario #3
 
-
-When(/^send a create shipping express request$/, () => {
+When(/^send a label express create request$/, () => {
 	LabelWebClient.Express(label)
 });
+
+
+Then(/^the label express should be created$/, () => {
+    HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessCreated)
+});
+
+
+When(/^i send a delivery cancel request with a newly included label manually$/, () => {
+	cy.log(`Label tracking code: ${label.response.headers.TrackingCode}`)
+});
+
+
+

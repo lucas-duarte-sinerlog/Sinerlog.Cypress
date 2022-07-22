@@ -5,6 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class LabelWebClient {
 
+    static Get(label: Label){
+        return cy.request({
+            method: 'GET',
+            url: `/Shipping/label/${label.trackingCode}/pdf`,
+            headers: { 'ApiKey': ApiKey.Sinerlog, },
+            body: label.payload,
+            failOnStatusCode: false
+        }).then(response => { Logger.LogResponseBody(response) }).then(response => {
+            label.BuildResponse(response)
+        });
+    }
+
     static Add(label: Label) {
         label.payload.invoiceKey = uuidv4()
         label.payload.invoiceNumber = uuidv4()
@@ -43,7 +55,9 @@ export class LabelWebClient {
             headers: { 'ApiKey': ApiKey.Sinerlog, },
             body: label.payload,
             failOnStatusCode: false
-        }).then(response => { label.BuildResponse(response) })
+        }).then(response => { label.BuildResponse(response) }).then(response => {
+          label.trackingCode = response.headers.trackingcode
+        })
 
     }
 }

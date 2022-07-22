@@ -66,3 +66,27 @@ When(/^send a label express create request$/, () => {
 	LabelWebClient.Express(label)
 });
 
+// Get Label
+
+
+Given(/^I want to get a label$/, () => {
+	return true;
+});
+
+When(/^this label was exported for Amazon S3$/, () => {
+	return true;
+});
+
+When(/^i send a get request with a label code "([^"]*)"$/, (trackingCode: string) => {
+	label.trackingCode = trackingCode
+    LabelWebClient.Get(label)
+});
+
+Then(/^the label should be got$/, () => {
+	HttpAssertion.CheckStatusCode(label.response, StatusCode.SuccessOK)
+});
+
+
+When(/^this label was not exported for Amazon S3$/, () => {
+	return true;
+});

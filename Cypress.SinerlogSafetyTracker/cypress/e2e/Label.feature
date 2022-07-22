@@ -21,13 +21,24 @@ Feature: Shipping Labels
         When i set a "add-label.json" label default payload
         And send a label create request
         Then the label should be created
-@focus 
+
     Scenario: Create a default Label express
         Given I want to create a label
         And the Shipping Company with id "3" and name "Correios" exists
         When i set a "add-label-express.json" label default payload
         And send a label express create request
         Then the label should be created
+
+    Scenario: Get a label exported for Amazon S3
+        Given I want to get a label
+        And this label was exported for Amazon S3
+        When i send a get request with a label code "DG997771375BR"
+        Then the label should be got
+    Scenario: Get a label not exported for Amazon S3
+        Given I want to get a label
+        And this label was not exported for Amazon S3
+        When i send a get request with a label code "SO244586125BR"
+        Then the label should be got
 
 
 

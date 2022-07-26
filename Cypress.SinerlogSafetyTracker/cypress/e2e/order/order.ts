@@ -82,7 +82,7 @@ Then(/^the logistic code must not equals null$/, () => {
 
 
 
-When(/^consult an order at SST$/, () => {
+When(/^consult a package at SST$/, () => {
     PackageWebClient.Get(order)
 });
 

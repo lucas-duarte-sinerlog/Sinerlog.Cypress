@@ -4,6 +4,7 @@ import { Order } from "../../models/cross-commerce/order-model";
 import { OrderWebClient } from "../../webclients/cross-commerce/order-webclient";
 import { AccountWebClient } from "../../webclients/onboarding/account-webclient";
 import { StatusCode } from 'status-code-enum'
+import { PackageWebClient } from "../../webclients/sinerlog-safety-tracker/package-webclient";
 
 const order = new Order()
 
@@ -31,7 +32,7 @@ Then(/^the account "([^"]*)" with id "([^"]*)" exists$/, (name, id: number) => {
 
 When(/^i set a "([^"]*)" default payload$/, (jsonName) => {
     cy.fixture(`cross-commerce/order/${jsonName}`).then(fixture => {
-        order.BuildPayload(fixture)
+        order.BuildRequestPayload(fixture)
     })
 });
 
@@ -75,18 +76,18 @@ When(/^get the order tracking code$/, () => {
 });
 
 
-Then(/^the tracking code must be not equals null$/, () => {
-	expect(order.trackingCode).not.equals("")
+Then(/^the logistic code must not equals null$/, () => {
+	expect(order.logisticsCode, 'Logistics Code').not.null
 });
 
 
 
 When(/^consult an order at SST$/, () => {
-    return true;
+    PackageWebClient.Get(order)
 });
 
 Then(/^the order must have been exported$/, () => {
-    return true;
+    expect(order.response.status).to.be.equals(200)
 });
 
 // Split

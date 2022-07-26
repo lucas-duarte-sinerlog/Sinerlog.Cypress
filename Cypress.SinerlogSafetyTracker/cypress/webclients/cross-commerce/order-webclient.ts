@@ -13,7 +13,7 @@ export class OrderWebClient {
         }).then(response => { Logger.LogResponseBody(response) }).then((response) => {
           order.BuildResponse(response)
           order.trackingCode = response.body.shippings[0].trackingCode
-          order.logisticCode = response.body.shippings[0].logisticCode
+          order.logisticsCode = response.body.shippings[0].logisticsCode
         })
     }
 

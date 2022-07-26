@@ -24,16 +24,15 @@ export class PackageWebClient {
     }
 
     static Get(order: Order) {
-
         cy.request({
             method: 'GET',
-            url: `https://dev.easymundi.com/api/orders/${order.logisticCode}`,
+            url: `https://dev.easymundi.com/api/orders/${order.logisticsCode}`,
             auth: {
                 bearer: BearerToken.TesteHub
             },
             failOnStatusCode: false
         }).then(response => { Logger.LogResponseBody(response) }).then(response => {
+            order.BuildResponse(response)
         })
-
     }
 }

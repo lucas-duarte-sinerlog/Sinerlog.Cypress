@@ -26,7 +26,7 @@ Feature: CrossCommerce - Order
         Then the order should be created
         When i wait for an order export time
         And get the order tracking code
-        Then the tracking code must be not equals null
+        Then the logistic code must not equals null
         And consult an order at SST
         Then the order must have been exported
 

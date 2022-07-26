@@ -12,7 +12,7 @@ export class WebClientModelBase {
         this.response = response
     }
 
-    BuildPayload(fixture){
+    BuildRequestPayload(fixture){
         this.payload = fixture
     }
 }

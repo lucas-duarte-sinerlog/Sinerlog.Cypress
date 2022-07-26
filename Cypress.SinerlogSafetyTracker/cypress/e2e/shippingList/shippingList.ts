@@ -28,7 +28,7 @@ When(/^the shipping seller with id "([^"]*)" exists$/, (shippingSellerId: number
 
 When(/^i set a "([^"]*)" label default payload$/, (jsonName) => {
     cy.fixture(`cross-commerce/label/${jsonName}`).then(fixture => {
-        label.BuildPayload(fixture)
+        label.BuildRequestPayload(fixture)
     })
 })
 
@@ -42,7 +42,7 @@ Then(/^the label should be created$/, () => {
 
 When(/^i set a "([^"]*)" shipping list default payload$/, (jsonName) => {
     cy.fixture(`cross-commerce/shippingList/${jsonName}`).then(fixture => {
-        shippingList.BuildPayload(fixture)
+        shippingList.BuildRequestPayload(fixture)
     })
 })
 

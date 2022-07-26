@@ -39,3 +39,16 @@ Feature: Shipping List
         Then the label express should be created
         When i send a delivery cancel request with a newly included label
         Then the delivery must not be suspend
+
+    Scenario: #4 - Get a Shipping List exported for Amazon S3
+        Given I want to get a Shipping List
+        And this Shipping List was exported for Amazon S3
+        When i send a get request with a Shipping List code "DG997771375BR"
+        Then the Shipping List should be got
+    Scenario: #5 - Get a Shipping List not exported for Amazon S3
+        Given I want to get a Shipping List
+        And this Shipping List was not exported for Amazon S3
+        When i send a get request with a Shipping List code "SO244586125BR"
+        Then the Shipping List should be got
+
+    Scenario: #6 - Create a Shipping List

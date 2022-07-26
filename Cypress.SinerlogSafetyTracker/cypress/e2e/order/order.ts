@@ -66,8 +66,20 @@ When(/^set a field "([^"]*)"$/, (args1) => {
 });
 
 When(/^i wait for an order export time$/, () => {
-    return true;
+    cy.wait(180000)
 });
+
+
+When(/^get the order tracking code$/, () => {
+	OrderWebClient.Get(order)
+});
+
+
+Then(/^the tracking code must be not equals null$/, () => {
+	expect(order.trackingCode).not.equals("")
+});
+
+
 
 When(/^consult an order at SST$/, () => {
     return true;

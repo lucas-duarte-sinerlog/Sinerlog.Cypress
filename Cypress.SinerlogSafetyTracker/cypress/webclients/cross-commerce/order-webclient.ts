@@ -12,6 +12,8 @@ export class OrderWebClient {
             headers: { 'ApiKey': ApiKey.Sinerlog, }
         }).then(response => { Logger.LogResponseBody(response) }).then((response) => {
           order.BuildResponse(response)
+          order.trackingCode = response.body.shippings[0].trackingCode
+          order.logisticCode = response.body.shippings[0].logisticCode
         })
     }
 

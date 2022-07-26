@@ -17,16 +17,19 @@ Feature: CrossCommerce - Order
         When i get the order
         Then the order status must be "Canceled"
 
-    Scenario: Order export to SST (imcomplete)
+@focus 
+    Scenario: Order > Package export to SST (to complete)
         Given i want to export an order to SST from CrossCommerce
         And the account "Sinerlog" with id "1" exists
         When i set a "add-order.json" default payload
-        And set a field "X"
         And send a create request
         Then the order should be created
         When i wait for an order export time
+        And get the order tracking code
+        Then the tracking code must be not equals null
         And consult an order at SST
         Then the order must have been exported
+
     Scenario Outline: Order Split by value
         Given I want to split an order by item and value
         And the account "Sinerlog" with id "1" exists

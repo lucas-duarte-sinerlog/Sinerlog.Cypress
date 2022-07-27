@@ -92,7 +92,6 @@ Then(/^the order must have been exported$/, () => {
 
 // Split
 
-
 Given(/^I want to split an order by item and value$/, () => {
     return true;
 });
@@ -116,7 +115,6 @@ When(/^i set a first product code "([^"]*)" with quantity "([^"]*)", unit price 
 	return true;
 });
 
-
 When(/^i set a second product code "([^"]*)" with quantity "([^"]*)", unit price "([^"]*)", shippingInsurance field "([^"]*)"$/, (productCode,quantity,unitPrice,shippingInsurance: string) => {
 	console.log(productCode,quantity,unitPrice,shippingInsurance);
     order.payload.items[1].code = productCode
@@ -125,6 +123,3 @@ When(/^i set a second product code "([^"]*)" with quantity "([^"]*)", unit price
 	order.payload.items[1].shippingInsurance = (/true/i).test(shippingInsurance)
 	return true;
 });
-
-
-

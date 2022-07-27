@@ -1,5 +1,4 @@
 import { Logger } from "../../utils/Logger"
-import { TenantToken } from "../../e2e/tenant/TenantToken.enum"
 import { v4 as uuidv4 } from 'uuid';
 import { Package } from "../../models/sinerlog-safety-tracker/package-model";
 import { BearerToken } from "../../enums/sinerlog-safety-tracker/bearerToken";
@@ -13,7 +12,7 @@ export class PackageWebClient {
             method: 'POST',
             url: `https://dev.easymundi.com/api/orders`,
             auth: {
-                bearer: TenantToken.TesteHub
+                bearer: BearerToken.TesteHub
             },
             failOnStatusCode: false,
             body: sstPackage.payload

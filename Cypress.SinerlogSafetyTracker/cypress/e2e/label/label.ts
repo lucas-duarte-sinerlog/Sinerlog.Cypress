@@ -11,7 +11,7 @@ Given(/^I want to create a label$/, () => { });
 
 When(/^i set a "([^"]*)" label default payload$/, (jsonName) => {
     cy.fixture(`cross-commerce/label/${jsonName}`).then(fixture => {
-        label.BuildPayload(fixture)
+        label.BuildRequestPayload(fixture)
     })
 })
 

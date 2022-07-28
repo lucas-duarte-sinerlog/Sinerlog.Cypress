@@ -69,7 +69,7 @@ Then(/^the delivery must be suspend$/, () => {
 
 
 When(/^i get the shipping list$/, () => {
-	return true;
+	ShippingListWebClient.Get(shippingList)
 });
 
 Then(/^the status must be "([^"]*)"$/, (suspendedStatus) => {
@@ -117,6 +117,60 @@ Then(/^the label express should be created$/, () => {
 When(/^i send a delivery cancel request with a newly included label manually$/, () => {
 	cy.log(`Label tracking code: ${label.response.headers.TrackingCode}`)
 });
+
+
+// S3 Scenarios
+
+
+Given(/^I want to get a Shipping List$/, () => {
+	return true;
+});
+
+
+When(/^this Shipping List was not exported for Amazon S3$/, () => {
+	return true;
+});
+
+When(/^i send a get request with a Shipping List code "([^"]*)"$/, (args1) => {
+	console.log(args1);
+	return true;
+});
+
+Then(/^the Shipping List should be got$/, () => {
+	HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
+});
+
+
+When(/^this Shipping List was exported for Amazon S3$/, () => {
+	return true;
+});
+
+
+Given(/^I want to create a new Shipping List$/, () => {
+	return true;
+});
+
+When(/^the Shipping Company with id "([^"]*)" and name "([^"]*)" exists$/, (id, name) => {
+    cy.request({
+        method: 'GET',
+        url: `http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/${id}`,
+    }).should(response => {
+        expect(response.status).to.be.equals(200)
+    }); 
+
+});
+
+
+When(/^i send a get request with a Shipping List Id "([^"]*)"$/, (shippingListId: number) => {
+    shippingList.id = shippingListId
+	ShippingListWebClient.Get(shippingList)
+});
+
+
+When(/^send a label create request$/, () => {
+    LabelWebClient.Add(label)
+});
+
 
 
 

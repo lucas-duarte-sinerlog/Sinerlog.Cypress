@@ -5,8 +5,17 @@ import { ApiKey } from "../../enums/onboarding/account/apiKey";
 import { Label } from "../../models/cross-commerce/label-model";
 
 export class ShippingListWebClient {
+    static Get(shippingList: ShippingList) {
+        return cy.request({
+            method: 'GET',
+            url: `/Shipping/ShippingList/${shippingList.id}/pdf`,
+            headers: { 'ApiKey': ApiKey.Sinerlog, },
+            failOnStatusCode: false
+        }).then(response => { Logger.LogResponseBody(response) }).then(response => {
+            shippingList.BuildResponse(response)
+        });
+    }
     
-
     static Add(shippingList: ShippingList) {
         shippingList.payload.code = uuidv4()
         Logger.LogRequestBody(shippingList.payload)
@@ -32,5 +41,7 @@ export class ShippingListWebClient {
             shippingList.BuildResponse(response)
         });
     }
+
+
     
 }

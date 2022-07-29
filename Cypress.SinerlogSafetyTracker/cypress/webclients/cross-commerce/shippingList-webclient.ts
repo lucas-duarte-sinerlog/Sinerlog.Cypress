@@ -8,7 +8,7 @@ export class ShippingListWebClient {
     static Get(shippingList: ShippingList) {
         return cy.request({
             method: 'GET',
-            url: `/Shipping/ShippingList/${shippingList.id}/pdf`,
+            url: `/Shipping/ShippingList/${shippingList.term}/pdf`,
             headers: { 'ApiKey': ApiKey.Sinerlog, },
             failOnStatusCode: false
         }).then(response => { Logger.LogResponseBody(response) }).then(response => {

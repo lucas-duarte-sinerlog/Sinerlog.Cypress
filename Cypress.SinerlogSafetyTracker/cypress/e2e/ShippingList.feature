@@ -77,3 +77,13 @@ Feature: Shipping List
         Then the label express should be created
         When i send a delivery cancel request with a newly included label
         Then the delivery must not be suspend
+
+    Scenario Outline: #8 Get a Shipping List
+        Given i want to get a Shipping List
+        When i send a get request with "<Term>" term "<TermValue>"
+        Then the shipping list must be got
+
+        Examples:
+            | Term          | TermValue     |
+            | Tracking Code | DG997772185BR |
+            | Id            | 837           |

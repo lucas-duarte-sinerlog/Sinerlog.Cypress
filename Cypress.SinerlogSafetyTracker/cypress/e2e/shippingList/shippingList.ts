@@ -69,12 +69,12 @@ Then(/^the delivery must be suspend$/, () => {
 
 
 When(/^i get the shipping list$/, () => {
-	ShippingListWebClient.Get(shippingList)
+    ShippingListWebClient.Get(shippingList)
 });
 
 Then(/^the status must be "([^"]*)"$/, (suspendedStatus) => {
-	console.log(suspendedStatus);
-	return true;
+    console.log(suspendedStatus);
+    return true;
 });
 
 
@@ -82,7 +82,7 @@ Then(/^the status must be "([^"]*)"$/, (suspendedStatus) => {
 
 
 When(/^i send a shipping list close request$/, () => {
-	ShippingListWebClient.Close(shippingList)
+    ShippingListWebClient.Close(shippingList)
 });
 
 Then(/^the shipping list must be closed$/, () => {
@@ -105,7 +105,7 @@ Then(/^the delivery must be suspended$/, () => {
 // Scenario #3
 
 When(/^send a label express create request$/, () => {
-	LabelWebClient.Express(label)
+    LabelWebClient.Express(label)
 });
 
 
@@ -115,7 +115,7 @@ Then(/^the label express should be created$/, () => {
 
 
 When(/^i send a delivery cancel request with a newly included label manually$/, () => {
-	cy.log(`Label tracking code: ${label.response.headers.TrackingCode}`)
+    cy.log(`Label tracking code: ${label.response.headers.TrackingCode}`)
 });
 
 
@@ -123,31 +123,31 @@ When(/^i send a delivery cancel request with a newly included label manually$/, 
 
 
 Given(/^I want to get a Shipping List$/, () => {
-	return true;
+    return true;
 });
 
 
 When(/^this Shipping List was not exported for Amazon S3$/, () => {
-	return true;
+    return true;
 });
 
 When(/^i send a get request with a Shipping List code "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
+    console.log(args1);
+    return true;
 });
 
 Then(/^the Shipping List should be got$/, () => {
-	HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
+    HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
 });
 
 
 When(/^this Shipping List was exported for Amazon S3$/, () => {
-	return true;
+    return true;
 });
 
 
 Given(/^I want to create a new Shipping List$/, () => {
-	return true;
+    return true;
 });
 
 When(/^the Shipping Company with id "([^"]*)" and name "([^"]*)" exists$/, (id, name) => {
@@ -156,14 +156,14 @@ When(/^the Shipping Company with id "([^"]*)" and name "([^"]*)" exists$/, (id, 
         url: `http://dev.doc.sinerlog.log.br/onboarding/api/ShippingCompany/${id}`,
     }).should(response => {
         expect(response.status).to.be.equals(200)
-    }); 
+    });
 
 });
 
 
 When(/^i send a get request with a Shipping List Id "([^"]*)"$/, (shippingListId: number) => {
-    shippingList.id = shippingListId
-	ShippingListWebClient.Get(shippingList)
+    shippingList.term = shippingListId
+    ShippingListWebClient.Get(shippingList)
 });
 
 
@@ -171,6 +171,18 @@ When(/^send a label create request$/, () => {
     LabelWebClient.Add(label)
 });
 
+// Get shipping list term
 
 
+Given(/^i want to get a Shipping List$/, () => {
+    return true;
+});
 
+When(/^i send a get request with "([^"]*)" term "([^"]*)"$/, (termName, termValue: string | number) => {
+    shippingList.term = termValue
+    ShippingListWebClient.Get(shippingList)
+});
+
+Then(/^the shipping list must be got$/, () => {
+    HttpAssertion.CheckStatusCode(shippingList.response, StatusCode.SuccessOK)
+});
